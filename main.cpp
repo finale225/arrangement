@@ -1,28 +1,25 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
 int main() {
-    cin.tie(NULL); cout.tie(NULL);
-    ios_base::sync_with_stdio(false);
-    int s;
-    cin >> s;
-    cin.ignore();
-    for (int i=0; i<s; i++) {
-        int score = 0, mulN = 1;
-        string result;
-        getline(cin, result);
-        for (int j=0; j<result.size(); j++) {
-            if (result[j] == 'O') {
-                score += mulN;
-                mulN++;
-            }
-            else if (result[j] == 'X') {
-                mulN = 1;
-                continue;
-            }
-            else return 0;
+    int c;
+    cin >> c;
+    for (int i=0; i<c; i++) {
+        int n;
+        double sum = 0;
+        cin >> n;
+        int studArr[n] = {0};
+        for (int j=0; j<n; j++) {
+            cin >> studArr[j];
+            sum += studArr[j];
         }
-        cout << score << '\n';
+        double avg = sum / n;
+        double count = 0;
+        for (int k=0; k<n; k++) {
+            if (studArr[k] > avg) count++;
+        }
+        cout << fixed;
+        cout.precision(3);
+        cout << count*100 / n << '%' << '\n';
     }
 }
