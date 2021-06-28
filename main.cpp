@@ -1,22 +1,28 @@
 #include <iostream>
-#define stdN 42
+#include <string>
 using namespace std;
 
 int main() {
     cin.tie(NULL); cout.tie(NULL);
     ios_base::sync_with_stdio(false);
-    int n, max = 0;
-    double sum = 0;
-    cin >> n;
-    double arr[n];
-    for (int i=0; i<n; i++) {
-        cin >> arr[i];
-        if (arr[i] > max) max = arr[i];
+    int s;
+    cin >> s;
+    cin.ignore();
+    for (int i=0; i<s; i++) {
+        int score = 0, mulN = 1;
+        string result;
+        getline(cin, result);
+        for (int j=0; j<result.size(); j++) {
+            if (result[j] == 'O') {
+                score += mulN;
+                mulN++;
+            }
+            else if (result[j] == 'X') {
+                mulN = 1;
+                continue;
+            }
+            else return 0;
+        }
+        cout << score << '\n';
     }
-    for (int i=0; i<n; i++) {
-        arr[i] = arr[i]*100 / max;
-        sum += arr[i];
-    }
-    cout.precision(8);
-    cout << sum / n;
 }
