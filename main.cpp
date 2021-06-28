@@ -3,15 +3,20 @@
 using namespace std;
 
 int main() {
-    cin.tie(NULL);
+    cin.tie(NULL); cout.tie(NULL);
     ios_base::sync_with_stdio(false);
-    int n[10] = {0}, arr[stdN] = {0}, count = 0;
-    for (int i=0; i<10; i++) {
-        cin >> n[i];
-        arr[n[i] %= stdN]++;
+    int n, max = 0;
+    double sum = 0;
+    cin >> n;
+    double arr[n];
+    for (int i=0; i<n; i++) {
+        cin >> arr[i];
+        if (arr[i] > max) max = arr[i];
     }
-    for (int i=0; i<stdN; i++) {
-        if (arr[i] != 0) count++;
+    for (int i=0; i<n; i++) {
+        arr[i] = arr[i]*100 / max;
+        sum += arr[i];
     }
-    cout << count;
+    cout.precision(8);
+    cout << sum / n;
 }
